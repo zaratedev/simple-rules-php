@@ -19,11 +19,20 @@
 
   public function singUp(Subscription $subscription)
   {
-    if ($subscription == 'monthly') {
-      $this->createMonthlySubscription();
-    } elseif ($subscription == 'forever') {
-      $this->createForeverSubscription();
-    }
+    $subscription->create();
   }
+
+  public function getSubscriptionType($type)
+  {
+    if ($type == 'forever') {
+      return new ForeverSubscription;
+    }
+
+    return new MonthlySubscription;
+  }
+
+  $subscription = getSubscriptionType($type);
+
+  singUp($subscription);
 
  ?>
