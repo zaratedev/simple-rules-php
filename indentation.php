@@ -19,16 +19,19 @@ class BankAccounts
 
     foreach ($this->accounts as $account)
     {
-      if ($account->type() == $accountType)
+      // If the account is of the type that was requested
+      if ($this->isOfType($accountType, $account))
       {
-        if ($account->isActive())
-        {
-          $filtered[] = $account;
-        }
+        $filtered[] = $account;
       }
     }
 
     return $filtered;
+  }
+
+  private function isOfType($accountType, $account)
+  {
+    return $account->type() == $accountType && $account->isActive();
   }
 
 }
