@@ -9,31 +9,55 @@ class UsersController
   //Variables
   protected $userService;
 
-  protected $registrationService;
-
-  protected $userRepository;
-
   protected $stripe;
 
   protected $mailer;
-
-  protected $userEventRepository;
 
   protected $logger;
 
   function __construct(
     UserService $userService,
-    RegistrationService $registrationService,
-    UserRepository $userRepository,
     Stripe $stripe,
     Mailer $mailer,
-    UserEventRepository $userEventRepository,
     Logger $logger
   )
   {
     # code...
   }
 }
+
+/**
+ * AuthController
+ */
+class AuthController
+{
+
+  protected $registrationService;
+
+  function __construct(RegistrationService $registrationService)
+  {
+    $this->registrationService = $registrationService;
+  }
+}
+
+
+/**
+ * Class UserService
+ */
+class UserService
+{
+
+  protected $userRepository;
+
+  protected $userEventRepository;
+
+  function __construct(UserRepository $userRepository, UserEventRepository $userEventRepository)
+  {
+    $this->userRepository = $userRepository;
+    $this->userEventRepository = $userEventRepository;
+  }
+}
+
 
 
  ?>
