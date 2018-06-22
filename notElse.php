@@ -17,4 +17,13 @@
     return Redirect::home();
   }
 
+  public function singUp(Subscription $subscription)
+  {
+    if ($subscription == 'monthly') {
+      $this->createMonthlySubscription();
+    } elseif ($subscription == 'forever') {
+      $this->createForeverSubscription();
+    }
+  }
+
  ?>
